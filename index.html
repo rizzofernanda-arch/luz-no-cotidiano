@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Site educativo sobre a luz, reflexão da luz, espelhos e aplicações no cotidiano.">
+
+    <title>Luz no Cotidiano</title>
+
+
+    <!-- ============================= -->
+    <!-- CSS DO SITE -->
+    <!-- ============================= -->
+
+    <style>
+
+        /* CONFIGURAÇÕES GERAIS */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef4ff;
+            color: #222;
+            line-height: 1.6;
+            font-size: 18px;
+        }
+
+
+        /* CABEÇALHO */
+
+        header {
+            background: linear-gradient(135deg, #06164f, #0879d9);
+            color: white;
+            text-align: center;
+            padding: 45px 20px;
+        }
+
+        header h1 {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 20px;
+            margin-bottom: 25px;
+        }
+
+
+        /* MENU */
+
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.15);
+        }
+
+        nav a:hover,
+        nav a:focus {
+            background: white;
+            color: #06164f;
+        }
+
+
+        /* CONTEÚDO */
+
+        main {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        section {
+            background: white;
+            margin: 30px 15px;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #0754a6;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            color: #0879d9;
+            margin: 15px 0;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+
+        /* DESTAQUE */
+
+        .destaque {
+            background: #e1f0ff;
+            border-left: 7px solid #0879d9;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+
+        /* CARDS */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .card {
+            background: #f2f7ff;
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid #d5e6ff;
+        }
+
+        .card h3 {
+            font-size: 22px;
+        }
+
+
+        /* FÓRMULA */
+
+        .formula {
+            background: #06164f;
+            color: white;
+            padding: 25px;
+            text-align: center;
+            font-size: 25px;
+            font-weight: bold;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+
+
+        /* SIMULAÇÃO */
+
+        .simulacao {
+            text-align: center;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            max-width: 750px;
+            height: auto;
+            background: #111;
+            border: 4px solid #222;
+            border-radius: 10px;
+            margin: 25px auto;
+        }
+
+        input[type="range"] {
+            width: 80%;
+            cursor: pointer;
+        }
+
+        .angulo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #0754a6;
+        }
+
+
+        /* QUIZ */
+
+        .pergunta {
+            background: #f3f6fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .pergunta label {
+            display: block;
+            margin: 12px 0;
+            cursor: pointer;
+        }
+
+        button {
+            background: #0879d9;
+            color: white;
+            border: none;
+            padding: 13px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 17px;
+            margin: 5px;
+        }
+
+        button:hover,
+        button:focus {
+            background: #06164f;
+            outline: 3px solid #ffd000;
+        }
+
+        #resultado {
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+
+        /* ACESSIBILIDADE */
+
+        .acessibilidade {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+
+        /* RODAPÉ */
+
+        footer {
+            background: #06164f;
+            color: white;
+            text-align: center;
+            padding: 35px;
+            margin-top: 40px;
+        }
+
+
+        /* ALTO CONTRASTE */
+
+        .contraste {
+            background: black !important;
+            color: white !important;
+        }
+
+        .contraste section {
+            background: #111 !important;
+            color: white !important;
+        }
+
+        .contraste h2,
+        .contraste h3 {
+            color: yellow !important;
+        }
+
+        .contraste .card,
+        .contraste .pergunta,
+        .contraste .destaque {
+            background: #222 !important;
+            color: white !important;
+        }
+
+        .contraste .formula {
+            background: black;
+            border: 2px solid white;
+        }
+
+
+        /* RESPONSIVIDADE */
+
+        @media (max-width: 700px) {
+
+            header h1 {
+                font-size: 32px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 22px;
+            }
+
+            nav {
+                flex-direction: column;
+            }
+
+            nav a {
+                display: block;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ============================= -->
+    <!-- CABEÇALHO -->
+    <!-- ============================= -->
+
+    <header>
+
+        <h1>💡 Luz no Cotidiano</h1>
+
+        <p>
+            Descobrindo as propriedades da luz através da Física
+            e da tecnologia
+        </p>
+
+
+        <!-- MENU -->
+
+        <nav aria-label="Menu principal">
+
+            <a href="#inicio">Início</a>
+
+            <a href="#luz">A Luz</a>
+
+            <a href="#reflexao">Reflexão</a>
+
+            <a href="#simulacao">Simulação</a>
+
+            <a href="#quiz">Quiz</a>
+
+            <a href="#acessibilidade">
+                Acessibilidade
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <main>
+
+
+        <!-- ============================= -->
+        <!-- INÍCIO -->
+        <!-- ============================= -->
+
+        <section id="inicio">
+
+            <h2>🌟 Bem-vindo!</h2>
+
+            <p>
+                Você já parou para pensar como conseguimos enxergar
+                as coisas ao nosso redor?
+            </p>
+
+            <p>
+                Isso acontece graças à <strong>luz</strong>.
+                Ela está presente em praticamente todos os momentos
+                do nosso cotidiano.
+            </p>
+
+            <div class="destaque">
+
+                <strong>
+                    Neste site vamos aprender sobre a reflexão da luz,
+                    observando como ela funciona através de exemplos
+                    do cotidiano e de uma simulação interativa.
+                </strong>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ============================= -->
+        <!-- O QUE É A LUZ -->
+        <!-- ============================= -->
+
+        <section id="luz">
+
+            <h2>🔦 O que é a luz?</h2>
+
+            <p>
+                A luz é uma forma de energia que pode se propagar
+                pelo espaço e por diferentes meios.
+            </p>
+
+            <p>
+                A luz permite que nossos olhos recebam informações
+                sobre os objetos que estão ao nosso redor.
+            </p>
+
+
+            <h3>Algumas propriedades da luz</h3>
+
+
+            <div class="cards">
+
+
+                <div class="card">
+
+                    <h3>➡️ Propagação</h3>
+
+                    <p>
+                        Em meios homogêneos e transparentes,
+                        a luz se propaga aproximadamente em
+                        linha reta.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>🔄 Reflexão</h3>
+
+                    <p>
+                        A luz pode atingir uma superfície e
+                        retornar ao meio de onde veio.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>🌈 Refração</h3>
+
+                    <p>
+                        A refração ocorre quando a luz passa
+                        de um meio para outro e muda sua
+                        velocidade e, em determinadas situações,
+                        sua direção.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ============================= -->
+        <!-- REFLEXÃO -->
+        <!-- ============================= -->
+
+        <section id="reflexao">
+
+            <h2>🪞 Reflexão da Luz</h2>
+
+            <p>
+                A reflexão acontece quando um raio de luz atinge
+                uma superfície e retorna ao meio de onde veio.
+            </p>
+
+
+            <div class="destaque">
+
+                <h3>Exemplo: o espelho</h3>
+
+                <p>
+                    Quando olhamos para um espelho, conseguimos
+                    observar nossa imagem porque a luz que chega
+                    até nosso rosto é refletida pela superfície
+                    do espelho e chega aos nossos olhos.
+                </p>
+
+            </div>
+
+
+            <h3>📐 Lei da reflexão</h3>
+
+            <p>
+                Na reflexão regular, o ângulo de incidência é
+                igual ao ângulo de reflexão.
+            </p>
+
+
+            <div class="formula">
+
+                Ângulo de incidência =
+                Ângulo de reflexão
+
+            </div>
+
+
+            <p>
+                O ângulo é medido em relação à
+                <strong>normal</strong>, que é uma linha imaginária
+                perpendicular à superfície.
+            </p>
+
+        </section>
+
+
+
+        <!-- ============================= -->
+        <!-- COTIDIANO -->
+        <!-- ============================= -->
+
+        <section>
+
+            <h2>🏠 A luz no nosso cotidiano</h2>
+
+            <p>
+                A reflexão da luz aparece em várias situações
+                que fazem parte da nossa rotina.
+            </p>
+
+
+            <div class="cards">
+
+
+                <div class="card">
+
+                    <h3>🪞 Espelhos</h3>
+
+                    <p>
+                        Utilizamos a reflexão da luz para
+                        observar nossa imagem.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>🚗 Retrovisores</h3>
+
+                    <p>
+                        Os retrovisores dos veículos permitem
+                        observar objetos que estão atrás do carro.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3>🌊 Água</h3>
+
+                    <p>
+                        Superfícies de água podem refletir
+                        imagens dependendo das condições da
+                        superfície e da iluminação.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ============================= -->
+        <!-- SIMULAÇÃO -->
+        <!-- ============================= -->
+
+        <section id="simulacao" class="simulacao">
+
+            <h2>🔬 Simulação da Reflexão</h2>
+
+            <p>
+                Use o controle para alterar o ângulo de incidência
+                do raio de luz.
+            </p>
+
+            <p class="angulo">
+
+                Ângulo:
+                <span id="valorAngulo">45</span>°
+
+            </p>
+
+
+            <input
+                type="range"
+                id="controleAngulo"
+                min="10"
+                max="80"
+                value="45"
+                aria-label="Controle do ângulo de incidência"
+            >
+
+
+            <canvas
+                id="canvas"
+                width="750"
+                height="400"
+                aria-label="Simulação da reflexão da luz"
+            ></canvas>
+
+
+            <p id="descricao">
+
+                O raio azul representa a luz incidente.
+                O raio vermelho representa a luz refletida.
+
+            </p>
+
+        </section>
+
+
+
+        <!-- ============================= -->
+        <!-- QUIZ -->
+        <!-- ============================= -->
+
+        <section id="quiz">
+
+            <h2>🧠 Quiz sobre a Luz</h2>
+
+            <p>
+                Teste seus conhecimentos!
+            </p>
+
+
+            <!-- QUESTÃO 1 -->
+
+            <div class="pergunta">
+
+                <h3>
+                    1. O que acontece na reflexão da luz?
+                </h3>
+
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="q1"
+                        value="a"
+                    >
+
+                    A luz desaparece.
+
+                </label>
+
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="q1"
+                        value="b"
+                    >
+
+                    A luz retorna ao atingir uma superfície.
+
+                </label>
+
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="q1"
+                        value="c"
+                    >
+
+                    A luz deixa de existir.
+
+                </label>
+
+            </div>
+
+
+
+            <!-- QUESTÃO 2 -->
+
+            <div class="pergunta">
+
+                <h3>
+                    2. Qual objeto utiliza a reflexão da luz?
+                </h3>
+
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="q2"
+                        value="a"
+                    >
+
+                    Espelho.
+
+                </label>
+
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="q2"
+                        value="b"
+                    >
+
+                    Lápis.
+
+                </label>
+
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="q2"
+                        value="c"
+                    >
+
+                    Caderno.
+
+                </label>
+
+            </div>
+
+
+
+            <!-- QUESTÃO 3 -->
+
+            <div class="pergunta">
+
+                <h3>
+                    3. Na reflexão regular, o ângulo de incidência é:
+                </h3>
+
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="q3"
+                        value="a"
+                    >
+
+                    Maior que o ângulo de reflexão.
+
+                </label>
+
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="q3"
+                        value="b"
+                    >
+
+                    Menor que o ângulo de reflexão.
+
+                </label>
+
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="q3"
+                        value="c"
+                    >
+
+                    Igual ao ângulo de reflexão.
+
+                </label>
+
+            </div>
+
+
+            <button onclick="corrigirQuiz()">
+
+                Ver resultado
+
+            </button>
+
+
+            <p id="resultado"></p>
+
+        </section>
+
+
+
+        <!-- ============================= -->
+        <!-- ACESSIBILIDADE -->
+        <!-- ============================= -->
+
+        <section id="acessibilidade">
+
+            <h2>♿ Acessibilidade</h2>
+
+            <p>
+                Nosso site possui recursos para facilitar o acesso
+                de pessoas com baixa visão ou deficiência visual.
+            </p>
+
+
+            <div class="destaque">
+
+                <h3>Recursos disponíveis</h3>
+
+                <p>
+                    • Aumento da fonte
+                </p>
+
+                <p>
+                    • Diminuição da fonte
+                </p>
+
+                <p>
+                    • Alto contraste
+                </p>
+
+                <p>
+                    • Leitura do conteúdo por voz
+                </p>
+
+                <p>
+                    • Navegação utilizando o teclado
+                </p>
+
+                <p>
+                    • Descrição textual da simulação
+                </p>
+
+            </div>
+
+
+            <div class="acessibilidade">
+
+                <button onclick="aumentarFonte()">
+
+                    🔎 Aumentar fonte
+
+                </button>
+
+
+                <button onclick="diminuirFonte()">
+
+                    🔍 Diminuir fonte
+
+                </button>
+
+
+                <button onclick="contraste()">
+
+                    ⚫ Alto contraste
+
+                </button>
+
+
+                <button onclick="lerTexto()">
+
+                    🔊 Ler página
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ============================= -->
+        <!-- CONCLUSÃO -->
+        <!-- ============================= -->
+
+        <section>
+
+            <h2>🎯 O que aprendemos?</h2>
+
+            <p>
+                A luz é essencial para nossa vida e está presente
+                em diversas situações do cotidiano.
+            </p>
+
+            <p>
+                A reflexão é um dos fenômenos da luz e explica
+                situações como o funcionamento dos espelhos
+                e dos retrovisores.
+            </p>
+
+            <p>
+                A tecnologia pode ajudar a compreender esses
+                fenômenos através de simulações e atividades
+                interativas.
+            </p>
+
+
+            <div class="destaque">
+
+                <strong>
+                    Física + Tecnologia + Acessibilidade =
+                    uma forma mais interativa de aprender!
+                </strong>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- ============================= -->
+    <!-- RODAPÉ -->
+    <!-- ============================= -->
+
+    <footer>
+
+        <p>
+            💡 Luz no Cotidiano
+        </p>
+
+        <p>
+            Projeto escolar de Física
+        </p>
+
+        <p>
+            Desenvolvido com HTML, CSS e JavaScript.
+        </p>
+
+    </footer>
+
+
+
+    <!-- ============================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ============================= -->
+
+    <script>
+
+        // =====================================
+        // SIMULAÇÃO
+        // =====================================
+
+        const canvas =
+            document.getElementById("canvas");
+
+        const ctx =
+            canvas.getContext("2d");
+
+
+        const controle =
+            document.getElementById("controleAngulo");
+
+
+        const valor =
+            document.getElementById("valorAngulo");
+
+
+        function desenhar() {
+
+            const angulo =
+                Number(controle.value);
+
+
+            valor.textContent =
+                angulo;
+
+
+            // Limpar canvas
+
+            ctx.clearRect(
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+
+
+            // Fundo
+
+            ctx.fillStyle = "#111";
+
+            ctx.fillRect(
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+
+
+            // Espelho
+
+            ctx.strokeStyle = "#dddddd";
+
+            ctx.lineWidth = 10;
+
+            ctx.beginPath();
+
+            ctx.moveTo(100, 300);
+
+            ctx.lineTo(650, 300);
+
+            ctx.stroke();
+
+
+            // Ponto de incidência
+
+            const x = 375;
+
+            const y = 300;
+
+
+            ctx.fillStyle = "#ffff00";
+
+            ctx.beginPath();
+
+            ctx.arc(
+                x,
+                y,
+                8,
+                0,
+                Math.PI * 2
+            );
+
+            ctx.fill();
+
+
+            // Conversão do ângulo
+
+            const rad =
+                angulo * Math.PI / 180;
+
+
+            const tamanho = 220;
+
+
+            // Raio incidente
+
+            const inicioX =
+                x - Math.sin(rad) * tamanho;
+
+
+            const inicioY =
+                y - Math.cos(rad) * tamanho;
+
+
+            ctx.strokeStyle = "#00aaff";
+
+            ctx.lineWidth = 5;
+
+            ctx.beginPath();
+
+            ctx.moveTo(
+                inicioX,
+                inicioY
+            );
+
+            ctx.lineTo(
+                x,
+                y
+            );
+
+            ctx.stroke();
+
+
+            // Raio refletido
+
+            const finalX =
+                x + Math.sin(rad) * tamanho;
+
+
+            const finalY =
+                y - Math.cos(rad) * tamanho;
+
+
+            ctx.strokeStyle = "#ff3333";
+
+            ctx.lineWidth = 5;
+
+            ctx.beginPath();
+
+            ctx.moveTo(
+                x,
+                y
+            );
+
+            ctx.lineTo(
+                finalX,
+                finalY
+            );
+
+            ctx.stroke();
+
+
+            // Linha normal
+
+            ctx.strokeStyle = "#ffff00";
+
+            ctx.lineWidth = 2;
+
+            ctx.setLineDash([8,8]);
+
+            ctx.beginPath();
+
+            ctx.moveTo(
+                x,
+                70
+            );
+
+            ctx.lineTo(
+                x,
+                300
+            );
+
+            ctx.stroke();
+
+            ctx.setLineDash([]);
+
+
+            // Textos
+
+            ctx.font = "18px Arial";
+
+            ctx.fillStyle = "#00aaff";
+
+            ctx.fillText(
+                "Raio incidente",
+                30,
+                40
+            );
+
+
+            ctx.fillStyle = "#ff3333";
+
+            ctx.fillText(
+                "Raio refletido",
+                30,
+                70
+            );
+
+
+            ctx.fillStyle = "#ffff00";
+
+            ctx.fillText(
+                "Normal",
+                x + 10,
+                100
+            );
+
+
+            ctx.fillStyle = "white";
+
+            ctx.fillText(
+                "Superfície refletora",
+                290,
+                340
+            );
+
+
+            // Descrição para acessibilidade
+
+            document.getElementById(
+                "descricao"
+            ).textContent =
+
+                "O raio azul representa o raio incidente. " +
+                "O raio vermelho representa o raio refletido. " +
+                "O ângulo de incidência é de " +
+                angulo +
+                " graus e o ângulo de reflexão também é de " +
+                angulo +
+                " graus.";
+
+        }
+
+
+        controle.addEventListener(
+            "input",
+            desenhar
+        );
+
+
+        desenhar();
+
+
+
+        // =====================================
+        // QUIZ
+        // =====================================
+
+        function corrigirQuiz() {
+
+            let pontos = 0;
+
+
+            const q1 =
+                document.querySelector(
+                    'input[name="q1"]:checked'
+                );
+
+
+            const q2 =
+                document.querySelector(
+                    'input[name="q2"]:checked'
+                );
+
+
+            const q3 =
+                document.querySelector(
+                    'input[name="q3"]:checked'
+                );
+
+
+            if (
+                q1 &&
+                q1.value === "b"
+            ) {
+
+                pontos++;
+
+            }
+
+
+            if (
+                q2 &&
+                q2.value === "a"
+            ) {
+
+                pontos++;
+
+            }
+
+
+            if (
+                q3 &&
+                q3.value === "c"
+            ) {
+
+                pontos++;
+
+            }
+
+
+            const resultado =
+                document.getElementById(
+                    "resultado"
+                );
+
+
+            resultado.textContent =
+                "Você acertou " +
+                pontos +
+                " de 3 questões!";
+
+
+            if (pontos === 3) {
+
+                resultado.textContent +=
+                    " 🎉 Parabéns!";
+
+            }
+
+            else if (pontos === 2) {
+
+                resultado.textContent +=
+                    " 👍 Muito bem!";
+
+            }
+
+            else {
+
+                resultado.textContent +=
+                    " 📚 Revise o conteúdo e tente novamente.";
+
+            }
+
+        }
+
+
+
+        // =====================================
+        // AUMENTAR FONTE
+        // =====================================
+
+        let tamanhoFonte = 18;
+
+
+        function aumentarFonte() {
+
+            if (tamanhoFonte < 30) {
+
+                tamanhoFonte += 2;
+
+                document.body.style.fontSize =
+                    tamanhoFonte + "px";
+
+            }
+
+        }
+
+
+
+        // =====================================
+        // DIMINUIR FONTE
+        // =====================================
+
+        function diminuirFonte() {
+
+            if (tamanhoFonte > 14) {
+
+                tamanhoFonte -= 2;
+
+                document.body.style.fontSize =
+                    tamanhoFonte + "px";
+
+            }
+
+        }
+
+
+
+        // =====================================
+        // ALTO CONTRASTE
+        // =====================================
+
+        function contraste() {
+
+            document.body.classList.toggle(
+                "contraste"
+            );
+
+        }
+
+
+
+        // =====================================
+        // LEITURA POR VOZ
+        // =====================================
+
+        function lerTexto() {
+
+            if (
+                "speechSynthesis"
+                in window
+            ) {
+
+                const texto =
+                    document.querySelector(
+                        "main"
+                    ).innerText;
+
+
+                const fala =
+                    new SpeechSynthesisUtterance(
+                        texto
+                    );
+
+
+                fala.lang = "pt-BR";
+
+                fala.rate = 0.9;
+
+
+                speechSynthesis.cancel();
+
+                speechSynthesis.speak(
+                    fala
+                );
+
+            }
+
+            else {
+
+                alert(
+                    "Seu navegador não suporta leitura por voz."
+                );
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
